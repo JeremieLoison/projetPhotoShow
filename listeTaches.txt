@@ -1,0 +1,88 @@
+---- Création d'une liste de tàche pour la création de la galerie ----
+
+1- Create Controller
+-> php artisan make:controller AlbumsController
+
+and
+
+-> php artisan make:controller PhotosController
+
+2- Create Model
+
+-> php artisan make:model Album -make
+-> php artisan make:model Photo -make
+ 
+ after  in the file create_album_table.php 
+ (folder direction: Http/database/migrations) 
+
+public function up()
+{
+    Shema::create('albums', funtion(Blueprint $table) {
+        $table->increment('id');
+        $table->string('name');
+        $table->text('description');
+        $table->string('cover_image');
+        $table->timestamps();
+    };
+}
+
+after open file -> create_photos_table.php
+
+public function up()
+{
+    Shema::create('albums', funtion(Blueprint $table) {
+        $table->increment('id');
+        $table->integer('album_id');
+        $table->string('photo');
+        $table->string('title');
+        $table->string('size');
+        $table->string('description');
+        $table->timestamps();
+    };
+}
+ 
+
+3 - Add information AppServiceProvider 
+after direction the folder (Http/Providers/)
+and open the file AppServiceProvider.php
+
+insert -> use Illuminate\Support\Facades\Schema;
+
+insert ->
+public funtion boot()
+{
+    Schema::defaultStrinLength(191);
+}
+
+on  the conscole tape
+-> php artisan migrate
+
+4 - open AlbumsController
+Create the controller and for the 5 step create the views .blade
+
+public funtion index() {
+    return view('albums.index');
+}
+
+public function create(){
+    return view('albums.create')
+}
+
+
+5- Create the views
+
+in the folder (-> public\resources\views\)
+create the folder (albums)
+and the view 
+-> 'index.blade.php'
+-> 'create.blade.php'
+
+6- Create the get route int the folder 'routes'
+-> Route::get('/', 'AlbumsController@index');
+-> Route::get('/albums', 'AlbumsController@index');
+-> Route::get('/albums/create', 'AlbumsController@create');
+
+7- Create an folder 'Layouts'
+and create an file app.blade.php
+
+

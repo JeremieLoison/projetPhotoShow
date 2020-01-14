@@ -1,0 +1,72 @@
+<!-- Stored in resources/views/child.blade.php -->
+
+@extends('layoutsApp.template')
+<link rel="stylesheet" href="../resources/css/layoutsGalleryApp.css">
+@section('title', 'Galerie de Laurent Bénard')
+
+@section('sidebar')
+@parent
+
+<h1>Galerie</h1>
+@endsection
+
+@section('content')
+
+<!-- Insertion de la gallerie par l'accès à la base de donnée
+    -> mise en place du style de la gallery
+
+<div id="gallery_lb">
+  <?php
+  $viewGallery = "";
+  echo $viewGallery;
+  ?>
+  <div class="img_gal">
+    <img src="./../public/images/404.jpg" alt="404">
+    <img src="./../public/images/laurent-portrait-v2.jpg" alt="404">
+    <img src="./../public/images/404.jpg" alt="404">
+    <img src="./../public/images/laurent-portrait-v2.jpg" alt="404">
+    <img src="./../public/images/404.jpg" alt="404">
+    <img src="./../public/images/laurent-portrait-v2.jpg" alt="404">
+  </div>
+</div>
+-->
+
+<div class="row">
+  <div class="column">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+  </div>
+  <div class="column">
+    <img src="./../public/images/404.jpg">
+    <img src="./../public/images/404.jpg">
+    <img src="./../public/images/404.jpg">
+    <img src="./../public/images/404.jpg">
+    <img src="./../public/images/404.jpg">
+    <img src="./../public/images/404.jpg">
+  </div>
+  <div class="column">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+  </div>
+  <div class="column">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+    <img src="./../public/images/laurent-portrait-v2.jpg">
+  </div>
+</div>
+
+
+@endsection
