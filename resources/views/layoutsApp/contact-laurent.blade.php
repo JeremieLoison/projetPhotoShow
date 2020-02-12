@@ -1,8 +1,10 @@
 <!-- view child -> insertion du formulaire de contact-->
 @extends('layoutsApp.template')
-<link rel="stylesheet" href="./../resources/css/layoutsContactApp.css">
-@section('title', 'Contacter Laurent Bénard')
 
+
+ <!-- CSS Perso -->
+    <link rel="stylesheet" href="../resources/css/layoutsContactApp.css">
+    
 @section('sidebar')
 @parent
 

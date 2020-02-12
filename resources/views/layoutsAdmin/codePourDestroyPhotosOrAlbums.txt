@@ -1,0 +1,20 @@
+
+  {!!Form::open(['action' => ['AlbumsController@destroy', $album->id], 'method' => 'POST'])!!}
+    {{Form::hidden('_method',  'delete')}}
+    {{Form::submit("Supprimer l'album", ['class' => 'button alert'])}}
+  {!!Form::close()!!}
+  <hr>
+  <small>Taille: {{$album->created_at}}</small>
+              @else
+                <div class="medium-4 column">
+                  <a href="/albums/{{$album->id}}">
+                    <img class="thumbnail" src="storage/album_covers/{{$album->cover_image}}"
+                    alt="{{$album->name}}">
+                  </a>
+                  <br>
+                  <h4>{{$album->name}}</h4>
+                  <br><br>
+  {!!Form::open(['action' => ['AlbumsController@destroy', $album->id], 'method' => 'POST'])!!}
+    {{Form::hidden('_method',  'delete')}}
+    {{Form::submit("Supprimer l'album", ['class' => 'button alert'])}}
+  {!!Form::close()!!}

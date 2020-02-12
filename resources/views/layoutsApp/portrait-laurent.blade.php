@@ -29,13 +29,12 @@
         <h2 class="elmt-title-presentation">Photographe de passion.</h2>
         <br>
         <p><br>
-            Figer l'instant, rendre immortel le temps; le temps d'un sourire, d'une grimace, d'une larme, d'un reflet dans les yeux.
-            Capturer dans la boite un instant, dérouler cet seconde et la plonger dans un bain pour lui donner l'immortalité.
-            </p>
-            <p>Je suis Laurent Bénard, un photographe amoureux de l'instantanité, d'une prise de vue spontanée et unique.
-            Mon envie, à travers le site web, est de vous faire découvrir mon univers et ma vision artistique.
-            <br>
-            Ma boite favorite est le IROLLEX, cet appareil ...
+            La photo a toujours été très présente chez moi. 
+            Mon père me laissait prendre des photos quand j'avais 4 ans,
+            et j'ai eu mon premier appareil à 6 ans, un appareil Pocket 110.
+            Dès lors, la photo a été présente dans ma vie par intermittence, jusqu'à mes 16 ans.
+            Je la pratique depuis avec assiduité. J'ai toujours aimé le paysage ainsi que la photo de rue,
+            mais m'adonne plus désormais au portrait.
         </p>
     </div>
 </div>

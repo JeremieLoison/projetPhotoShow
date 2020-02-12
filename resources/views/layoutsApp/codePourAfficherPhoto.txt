@@ -1,0 +1,27 @@
+   <div id="photos">
+        <div class="column text-center">
+            @foreach($album->photos as $photo)
+              @if($i == $colcount)
+                <div class="large-flex-dir-column">
+                  <a href="../photos/{{$photo->id}}">
+                    <img class="thumbnail" src="app/public/storage/albums_cover/{{$photo->album_id}}/{{$photo->photo}}"
+                    alt="{{$photo->title}}">
+                  </a>
+              @else
+                <div class="large-flex-dir-column">
+                  <a href="photos/{{$photo->id}}">
+                    <img class="thumbnail" src="app/public/storage/albums_cover/{{$photo->album_id}}/{{$photo->photo}}"
+                    alt="{{$photo->title}}">
+                  </a>
+                  <br>
+                 
+              @endif
+              @if($i % 3 == 0)
+              </div> </div><div class="row text-center">
+              @else
+                </div>
+              @endif
+              <?php $i++; ?>
+            @endforeach
+        </div>
+    </div>

@@ -1,11 +1,13 @@
  @extends('layouts.app')
 
  @section('content')
+ 
+
   <h3>{{$photo->title}}</h3>
   <p>{{$photo->description}}</p>
-  <a href="/albums/{{$photo->album_id}}" class="button">Retour à la galerie</a>
+  <a href="../../storage/app/public/storage/photo/{{$photo->album_id}}" class="button">Retour à la galerie</a>
   <hr>
-  <img src="/storage/photos/{{$photo->album_id}}/{{$photo->photo}}" alt="{{$photo->title}}">
+  <img src="/storage/photo/{{$photo->album_id}}/{{$photo->photo}}" alt="{{$photo->title}}">
   <br><br>
   {!!Form::open(['action' => ['PhotosController@destroy', $photo->id], 'method' => 'POST'])!!}
     {{Form::hidden('_method', 'DELETE')}}
@@ -18,4 +20,5 @@
   {!!Form::close()!!}
   <hr>
   <small>Taille: {{$photo->size}} MO</small>
+ 
 @endsection

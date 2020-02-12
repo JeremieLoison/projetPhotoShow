@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layoutsAdmin/app')
 
 @section('content')
+
 <div class="grid-container">
     <h3>Créer un album</h3>
         

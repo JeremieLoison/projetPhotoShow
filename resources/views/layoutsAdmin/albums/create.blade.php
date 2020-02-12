@@ -4,6 +4,7 @@
         {!!Form::open(['action' => 'AlbumsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
         {{Form::text('name', '',['placeholder' => 'Nom de la galerie'])}}
         {{Form::text('description','',['placeholder' => 'Une description sommaire...'])}}
+        <br><br>
         {{Form::file('cover_image')}}
         {{Form::submit('Enregistrer')}}
         {!! Form::close() !!}

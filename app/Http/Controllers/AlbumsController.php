@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Album;
+use App\Photo;
+
+
 
 class AlbumsController extends Controller
 {
+    public function index(){
+        $albums = Album::with('Photos')->get();
+        return view('albums.index')->with('albums', $albums);
+    }
 
     public function photos(){
         $albums = Album::with('Photos')->get();
-        return view('layoutsAdmin.adminPhotos')->with('albums', $albums);
+        return view('layoutsAdmin.adminPhotos', compact($albums));
     }
 
     public function admGal(){
@@ -19,9 +27,12 @@ class AlbumsController extends Controller
                ->with('photos', $albums);
     }
 
-    public function create(){
+  /*  public function create(){
         return view('layoutsAdmin.albums.create');
-    }
+    }*/
+     public function create(){
+        return view('albums.create');
+     }
 
     protected function store(Request $request){
         $this->validate($request, [
@@ -41,7 +52,7 @@ class AlbumsController extends Controller
         $filenameToStore = $filename.'_'.time().'.'.$extension;
 
         // Charger l'image
-        $path= $request->file('cover_image')->storeAs('public/storage/album_covers', $filenameToStore);
+        $path= $request->file('cover_image')->storeAs('/public/album_covers', $filenameToStore);
     
         $album = new Album;
         $album->name = $request->input('name');
@@ -51,22 +62,22 @@ class AlbumsController extends Controller
 
         $album->save();
 
-        return redirect('/albums')->with('success', "L'album a bien été créé !");
+        return redirect('photos')->with('success', "L'album a bien été créé !");
     }
 
      public function show($id){
           $album = Album::with('Photos')->find($id);
-          return view('albums.show')->with('album', $album);
+          return view('albums/show')->with('album', $album);
         }
-        public function destroy($id){
-          $photo = Photo::find($id);
+    
+    public function destroy($id){
+          $album = Album::find($id);
+            if(Storage::delete('../storage/app/public/storage/album_covers/'.$album['cover_image'])){
+                $album->delete();
 
-            if(storage::delete('public/photos/'.$photo->album_id.'/'.$photo->photo)){
-                $photo->delete();
-
-            return redirect('/')->with('success', 'Votre photo est définitivement supprimé !');
+            return redirect('/photos')->with('success', 'Votre photo est définitivement supprimé !');
             }
-            else return redirect('/')->with('error', 'ERREUR DANS LA SUPRESSION');
+            else return redirect('/photos')->with('error', 'ERREUR DANS LA SUPRESSION');   
         }
         
          public function update(Request $request){

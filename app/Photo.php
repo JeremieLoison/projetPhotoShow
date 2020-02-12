@@ -8,7 +8,7 @@ class Photo extends Model
 {
   protected $fillable = array('album_id', 'description', 'photo', 'title', 'size');
 
-    public function album(){
+    public function albums(){
         return $this->belongsTo('App\Album');
     }
 }

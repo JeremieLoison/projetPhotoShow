@@ -1,38 +1,47 @@
 @extends('layouts.app')
 
-@section('content')
-  <h1>{{$album->name}}</h1>
-  <a class="button secondary" href="/">Retour</a>
-  <a class="button" href="/photos/create/{{$album->id}}">Charger des photos dans l'album</a>
-  
-  <hr>
 
-  @if(count($album->photos) > 0)
+@section('content')
+  
+@section('content')
+  @if(count($photo) > 0)
     <?php
-      $colcount = count($album->photos);
+      $colcount = count($photo);
       $i = 1;
     ?>
-    <div id="photos">
-        <div class="column text-center">
-            @foreach($album->photos as $photo)
+    <div id="albums">
+        <div class="row text-center">
+            @foreach($photo as $photo)
               @if($i == $colcount)
-                <div class="large-flex-dir-column">
-                  <a href="../photos/{{$photo->id}}">
-                    <img class="thumbnail" src="/storage/photos/{{$photo->album_id}}/{{$photo->photo}}"
-                    alt="{{$photo->title}}">
+                <div class="medium-4 column end">
+                  <a href="/photos/show/{{$photo->id}}">
+                    <img class="thumbnail" src="../public/storage/album_covers/{{$photo->title}}"
+                    alt="{{$photo->description}}">
                   </a>
                   <br>
                   <h4>{{$photo->title}}</h4>
-                  <a class="button alert" href="../photos/{{$photo->id}}">Supprimer la photo de l'album</a>
+                  <br><br>
+  {!!Form::open(['action' => ['PhotosController@destroy', $photo->id], 'method' => 'POST'])!!}
+    {{Form::hidden('_method',  'delete')}}
+    {{Form::submit("Supprimer l'album", ['class' => 'button alert'])}}
+  {!!Form::close()!!}
+  <hr>
+  <small>Taille: {{$photo->created_at}}</small>
               @else
-                <div class="large-flex-dir-column">
-                  <a href="photos/{{$photo->id}}">
-                    <img class="thumbnail" src="/storage/photos/{{$photo->album_id}}/{{$photo->photo}}"
+                <div class="medium-4 column">
+                  <a href="/{{$photo->id}}">
+                    <img class="thumbnail" src="../storage/app/public/storage/album_covers/{{$photo->title}}"
                     alt="{{$photo->title}}">
                   </a>
                   <br>
                   <h4>{{$photo->title}}</h4>
-                   <a class="button alert" href="../photos/{{$photo->id}}">Supprimer la photo de l'album</a>
+                  <br><br>
+  {!!Form::open(['action' => ['AlbumsController@destroy', $title->id], 'method' => 'POST'])!!}
+    {{Form::hidden('_method',  'delete')}}
+    {{Form::submit("Supprimer l'album", ['class' => 'button alert'])}}
+  {!!Form::close()!!}
+  <hr>
+  <small>Photo créé le: {{$photo->created_at}}</small>
               @endif
               @if($i % 3 == 0)
               </div> </div><div class="row text-center">
@@ -44,6 +53,7 @@
         </div>
     </div>
   @else
-    <p>Aucune photo à afficher !</p>
+    <p>Aucune photos à afficher !</p>
   @endif
+   
 @endsection

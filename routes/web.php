@@ -5,13 +5,19 @@
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+| => insertion des routes 
+/
+/    1) Route vers l'application côté UTILISATEUR
+/       => / WELCOME
+        => / Portrait
+        => / Galerie
+        => / Contact
+
+    2) Route vers l'application côté ADMINISTRATEUR
+        => /
 */
 
-// Mise en place des routes dans la barre de navigation
+// Mise en place des routes côté UTILISATEUR
 
 use App\Http\Controllers\AlbumsController;
 use App\Album;
@@ -31,8 +37,9 @@ Route::get('portrait', function () {
 })->name('portrait-laurent');
 
 // Navbar = route Galerie de Laurent
-Route::get('galerie', function () {
-    return view('layoutsApp.gallery-laurent');
+Route::get('galerie', function(){
+    $data['albums'] = Album::with('Photos')->get();
+    return view('layoutsApp.gallery-laurent',$data);
 })->name('gallery-laurent');
 
 
@@ -42,24 +49,19 @@ Route::get('contact', function () {
 })->name('contact-laurent');
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | ADMINISTRATION Web Routes 
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|*/
-
-Route::get('index', function () {
-    return view('layoutsAdmin.index');
-})->name('index');
-
+| 
+*/
 // AdminMenu = route du menu d'administration du site web
-Route::get('admin', function () {
-    return view('layoutsAdmin.adminMenu');
-})->name('adminMenu');
+//Route::get('admin', function () {
+//    return view('layoutsAdmin.adminMenu');
+//})->name('adminMenu');
 
 // Home 
 Route::get('home', function () {
@@ -73,9 +75,9 @@ Route::get('login', function () {
 
 // Photos
 Route::get('photos', function () {
-     $albums = Album::with('Photo')->get();
-    return view('layoutsAdmin.adminPhotos')->with('albums', $albums);
-})->name('Photos');
+     $data['albums'] = Album::with('Photos')->get();
+    return view('layoutsAdmin.adminPhotos', $data);
+})->name('adminPhotos');
 
 
 
@@ -105,28 +107,15 @@ Route::get('ideeformulaire', function () {
 })->name('ideeformulaire');
 
 
-// Create = route pour ajouter du contenu à la galerie
-Route::get('create', function(){
-    return view('layoutsAdmin.albums.create');
-})->name('createGallery');
+//Route admin gall
 
-Route::get('create', function(){
-    return view('layoutsAdmin.albums.create/{id}');
-})->name('createGallery');
-
-Route::get('showPhoto', function(){
-    return view('layoutsAdmin.albums.show');
-})->name('show');
-
-
-Route::post('layoutsAdmin.albums.store', 'AlbumsController@store');
-
-
-/*
-Route::get('/', 'AlbumsController@admGal');
-Route::get('/albums/admGal', 'AlbumsController@admGal');
-Route::get('/albums/create', 'AlbumsController@create');
-Route::get('/albums/{id}', 'AlbumsController@show');
+Route::get('/index', 'AlbumsController@index');
+Route::get('albums/create', 'AlbumsController@create');
+Route::get('/albums/show/{id}', 'AlbumsController@show');
 Route::post('/albums/store', 'AlbumsController@store');
+Route::delete('/albums/destroy/{id}', 'AlbumsController@destroy');
 
-*/
+Route::get('/photos/show/{id}', 'PhotosController@show');
+Route::get('/photos/create/{id}', 'PhotosController@create');
+Route::post('/photos/store', 'PhotosController@store');
+Route::delete('/photos/destroy/{id}', 'PhotosController@destroy');

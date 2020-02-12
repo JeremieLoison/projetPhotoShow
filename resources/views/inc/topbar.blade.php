@@ -1,9 +1,9 @@
-<div class="top-bar">
+<div class="nav justify-content-center">
     <div class="row">
-        <div class="top-bar-left">
+        <div class="center">
             <ul class="menu">
-                <li class="menu-text">PhotoShow</li>
-                <li><a href="albums/create">Créer un album</a></li>
+                <li class="menu-text">Gestion des albums</li>
+                <li><a href="create">Créer un album</a></li>
             </ul>
         </div>
     </div>

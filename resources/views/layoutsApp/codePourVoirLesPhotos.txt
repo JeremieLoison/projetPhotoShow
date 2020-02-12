@@ -1,0 +1,46 @@
+
+  ../storage/app/public/storage/album_covers/{{$photo->album_id}}/{{$photo->photo}}
+  
+  <h1>{{ $albums->name }}</h1>
+ 
+  <hr>
+
+  @if(count($albums->photos) > 0)
+    <?php
+      $colcount = count($albums->photos);
+      $i = 1;
+    ?>
+    <div id="photos">
+        <div class="column text-center">
+            @foreach($albums->photos as $photo)
+              @if($i == $colcount)
+                <div class="large-flex-dir-column">
+                  <a href="../photos/{{$photo->id}}">
+                    <img class="thumbnail" src="/storage/photos/{{$photo->album_id}}/{{$photo->photo}}"
+                    alt="{{$photo->title}}">
+                  </a>
+                  <br>
+                  <h4>{{$photo->title}}</h4>
+                  <a class="button alert" href="../photos/{{$photo->id}}">Supprimer la photo de l'album</a>
+              @else
+                <div class="large-flex-dir-column">
+                  <a href="photos/{{$photo->id}}">
+                    <img class="thumbnail" src="/storage/photos/{{$photo->album_id}}/{{$photo->photo}}"
+                    alt="{{$photo->title}}">
+                  </a>
+                  <br>
+                  <h4>{{$photo->title}}</h4>
+                   <a class="button alert" href="../photos/{{$photo->id}}">Supprimer la photo de l'album</a>
+              @endif
+              @if($i % 3 == 0)
+              </div> </div><div class="row text-center">
+              @else
+                </div>
+              @endif
+              <?php $i++; ?>
+            @endforeach
+        </div>
+    </div>
+  @else
+    <p>Aucune photo à afficher !</p>
+  @endif

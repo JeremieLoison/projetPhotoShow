@@ -12,7 +12,7 @@
               @if($i == $colcount)
                 <div class="medium-4 column end">
                   <a href="/albums/{{$album->id}}">
-                    <img class="thumbnail" src="storage/album_covers/{{$album->cover_image}}"
+                    <img class="thumbnail" src="../storage/app/public/storage/album_covers/{{$album->cover_image}}"
                     alt="{{$album->name}}">
                   </a>
                   <br>
@@ -26,8 +26,8 @@
   <small>Taille: {{$album->created_at}}</small>
               @else
                 <div class="medium-4 column">
-                  <a href="/albums/{{$album->id}}">
-                    <img class="thumbnail" src="storage/album_covers/{{$album->cover_image}}"
+                  <a href="show/{{$album->id}}">
+                    <img class="thumbnail" src="./../storage/app/public/storage/album_covers/{{$album->cover_image}}"
                     alt="{{$album->name}}">
                   </a>
                   <br>
